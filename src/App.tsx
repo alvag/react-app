@@ -1,4 +1,4 @@
-import { Navigation } from './routes/Navigation.tsx';
+import { Navigation } from './routes';
 
 function App() {
 
