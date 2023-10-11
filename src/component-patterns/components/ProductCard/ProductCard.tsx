@@ -4,16 +4,19 @@ import { useProduct } from '../../hooks';
 import { Product } from './interfaces.ts';
 import { ProductContext } from './productContext.ts';
 import { ProductButtons, ProductImage, ProductTitle } from './';
+import { OnChangeArgs } from '../../interfaces/interfaces.ts';
 
 interface ProductCardProps {
     product: Product;
     children?: ReactNode;
     className?: string;
     style?: CSSProperties;
+    onChange?: ( args: OnChangeArgs ) => void;
+    value?: number;
 }
 
-export const ProductCard = ( { children, product, className, style }: ProductCardProps ) => {
-    const { counter, increaseBy } = useProduct();
+export const ProductCard = ( { children, product, className, style, onChange, value }: ProductCardProps ) => {
+    const { counter, increaseBy } = useProduct( { onChange, product, value } );
     const { Provider } = ProductContext;
 
     return (
