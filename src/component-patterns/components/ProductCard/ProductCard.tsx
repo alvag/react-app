@@ -4,19 +4,33 @@ import { useProduct } from '../../hooks';
 import { Product } from './interfaces.ts';
 import { ProductContext } from './productContext.ts';
 import { ProductButtons, ProductImage, ProductTitle } from './';
-import { OnChangeArgs } from '../../interfaces/interfaces.ts';
+import { InitialValues, OnChangeArgs, ProductCardHandlers } from '../../interfaces/interfaces.ts';
 
 interface ProductCardProps {
     product: Product;
-    children?: ReactNode;
+    children: ( args: ProductCardHandlers ) => ReactNode;
     className?: string;
     style?: CSSProperties;
     onChange?: ( args: OnChangeArgs ) => void;
     value?: number;
+    initialValues?: InitialValues;
 }
 
-export const ProductCard = ( { children, product, className, style, onChange, value }: ProductCardProps ) => {
-    const { counter, increaseBy } = useProduct( { onChange, product, value } );
+export const ProductCard = ( {
+                                 children,
+                                 product,
+                                 className,
+                                 style,
+                                 onChange,
+                                 value,
+                                 initialValues,
+                             }: ProductCardProps ) => {
+    const { counter, increaseBy, maxCount, isMaxCountReached, reset } = useProduct( {
+        onChange,
+        product,
+        value,
+        initialValues,
+    } );
     const { Provider } = ProductContext;
 
     return (
@@ -24,11 +38,19 @@ export const ProductCard = ( { children, product, className, style, onChange, va
             counter,
             increaseBy,
             product,
+            maxCount,
         } }>
             <div className={ `${ styles.productCard } ${ className ? className : '' }` }
                  style={ style }
             >
-                { children }
+                { children( {
+                    count: counter,
+                    increaseBy,
+                    maxCount,
+                    product,
+                    isMaxCountReached,
+                    reset,
+                } ) }
             </div>
         </Provider>
     );
