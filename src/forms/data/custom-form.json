@@ -1,0 +1,74 @@
+[
+  {
+    "type": "input",
+    "name": "firstName",
+    "placeholder": "First name",
+    "label": "First name",
+    "value": "",
+    "validations": [
+      {
+        "type": "required"
+      },
+      {
+        "type": "minLength",
+        "value": 5
+      }
+    ]
+  },
+  {
+    "type": "input",
+    "name": "lastName",
+    "placeholder": "Last name",
+    "label": "Last name",
+    "value": "",
+    "validations": [
+      {
+        "type": "required"
+      }
+    ]
+  },
+  {
+    "type": "email",
+    "name": "email",
+    "placeholder": "Email",
+    "label": "Email",
+    "value": "",
+    "validations": [
+      {
+        "type": "required"
+      },
+      {
+        "type": "email"
+      }
+    ]
+  },
+  {
+    "type": "select",
+    "name": "favoriteGame",
+    "label": "Favorite Game",
+    "value": "",
+    "validations": [
+      {
+        "type": "required"
+      }
+    ],
+    "options": [
+      {
+        "id": 1,
+        "label": "Counter-Strike"
+      },
+      {
+        "id": 2,
+        "label": "League of Legends"
+      },
+      {
+        "id": 3,
+        "label": "Dota 2"
+      },
+      {
+        "id": 4,
+        "label": "Overwatch"
+      }
+    ]
+  }
+]
